@@ -1,0 +1,45 @@
+header {
+    position: relative;
+    display: flex;
+    height: 55px;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+header h3 {
+    margin: 0.8% 0 0.8% 24%;
+    width: 260px;
+    padding-right: 1%;
+    border-right: 1px solid #ffffff;
+}
+
+header h3 span {
+    color: darkorange;
+}
+
+.logo {
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+}
+
+.searchInput {
+    margin: 0.5% 0 0.5% 2%;
+    padding: 0 6px;
+    width: 25%;
+    outline: 0;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-image: url('../assets/search-icon.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    font-family: 'Source Code Pro', monospace;
+}
+
+header h4 {
+    margin: 0.9% 0 0.8% 2%;
+    padding-left: 40px;
+    border-left: 1px solid #ffffff;
+}
