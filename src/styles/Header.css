@@ -7,10 +7,9 @@ header {
 }
 
 header h3 {
-    margin: 0.8% 0 0.8% 24%;
+    margin: 0.8% 0 0.8% 13%;
     width: 260px;
     padding-right: 1%;
-    border-right: 1px solid #ffffff;
 }
 
 header h3 span {
@@ -25,9 +24,9 @@ header h3 span {
 }
 
 .searchInput {
-    margin: 0.5% 0 0.5% 2%;
-    padding: 0 6px;
-    width: 25%;
+    margin: 0.5% 0 0.5% 10%;
+    padding: 0 8px;
+    width: 26%;
     outline: 0;
     border: 1px solid black;
     border-radius: 10px;
@@ -39,7 +38,6 @@ header h3 span {
 }
 
 header h4 {
-    margin: 0.9% 0 0.8% 2%;
+    margin: 0.9% 0 0.8% 14%;
     padding-left: 40px;
-    border-left: 1px solid #ffffff;
 }

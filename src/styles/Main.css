@@ -1,0 +1,30 @@
+.wm_main {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    grid-gap: 40px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    width: 70%;
+    height: 810px;
+    background-image: url("../assets/ny.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sectionInterface {
+    padding-top: 6rem;
+    border-radius: 4px;
+    font-size: 2rem;
+    font-weight: 900;
+    background-color: white;
+    color: black;
+    opacity: 0.9;
+    text-decoration: none;
+}
+
+.sectionInterface:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    opacity: 0.8;
+}

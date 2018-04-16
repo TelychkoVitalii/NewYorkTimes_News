@@ -11,17 +11,15 @@ class Header extends Component {
             <header>
                 <h3>
                     <img className="logo" src="pZAjTcKC_400x400.jpg" alt="logo"/>
-                    <span>DataArt</span> Music Player
+                    <span>DataArt</span> Top Stories
                 </h3>
                 <input type="text"
-                       placeholder="Search"
+                       placeholder="Search Article..."
                        className="searchInput" onInput={this.searchArtist}/>
-                <h4>Settings</h4>
+                <h4>Perfect List</h4>
             </header>
         );
     }
 }
 
 export default Header;
-
-// https://itunes.apple.com/search?term=lana&media=music&limit=20
