@@ -7,3 +7,9 @@ export const fetchTopic = (section) => {
         params: { 'api-key': apiKey }
     })
 };
+
+export const fetchArticles = (term) => {
+    return axios.get('https://api.nytimes.com/svc/search/v2/articlesearch.json?', {
+        params: { 'api-key': apiKey, 'q': term, 'hl': true }
+    })
+};

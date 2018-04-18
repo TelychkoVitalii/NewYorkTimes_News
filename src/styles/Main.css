@@ -1,6 +1,6 @@
 .wm_main {
     display: grid;
-    grid-template-columns: repeat(3, 2fr);
+    grid-template-columns: repeat(3 , 2fr);
     grid-gap: 40px;
     margin: 0 auto;
     padding: 30px 40px;

@@ -1,0 +1,47 @@
+.tp_perfect {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 40px;
+    margin: 0 auto;
+    padding: 40px;
+    width: 70%;
+    height: 800px;
+    background-color: white;
+}
+
+.fv_list {
+    display: flex;
+    padding-bottom: 30px;
+    border-bottom: 1px solid lightgray;
+}
+
+.fv_list img {
+    margin-right: 40px;
+}
+
+.descBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.descBlock p, .descBlock h3 {
+    margin: 8px 0 18px;
+    text-align: left;
+}
+
+.descBlock .addInfo {
+    align-self: flex-start;
+}
+
+.removeOption {
+    font-weight: 600;
+    margin-left: 30px;
+}
+
+.removeOption:hover {
+    cursor: pointer;
+}
+
+.defaultTitle {
+    font-style: italic;
+}

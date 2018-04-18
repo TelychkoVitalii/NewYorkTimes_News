@@ -1,0 +1,29 @@
+.options {
+    margin: -45px 40px 0 0;
+    float: right;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.options:hover, .listOptions li:hover {
+    cursor: pointer;
+}
+
+.ddOptions {
+    float: right;
+}
+
+.listOptions {
+    border: 1px solid black;
+    margin: -20px 0;
+    padding: 3px 10px;
+}
+
+.listOptions li {
+    font-size: 12px;
+    list-style-type: none;
+}
+
+.listOptions li:hover {
+    font-weight: 600;
+}

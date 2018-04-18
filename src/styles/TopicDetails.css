@@ -1,0 +1,35 @@
+.tp_details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    padding: 40px;
+    width: 70%;
+    height: 100%;
+    background-color: white;
+}
+
+.transitionBlock {
+    animation: 2s appear;
+}
+
+.imgPreview {
+    height: 250px;
+    width: 370px;
+}
+
+.topicPreview {
+    color: black;
+    text-decoration: none;
+}
+
+.update {
+    position: absolute;
+    top: 7%;
+    left: 42%;
+    font-style: italic;
+}
+
+@keyframes appear {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}

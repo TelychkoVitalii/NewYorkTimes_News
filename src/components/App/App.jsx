@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import DevTools from 'mobx-react-devtools';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import TopicDetails from '../Main/TopicDetails';
+import Favorites from '../Main/Favorites';
 import Main from '../Main/index';
 import '../../styles/App.css';
 
@@ -14,8 +15,10 @@ class App extends Component {
           <div className="App">
               <Header/>
                   <Switch>
-                      <Route path="/topics" component={Main}/>
+                      <Redirect from="/" exact to="/topics" />
+                      <Route exact path="/topics" component={Main}/>
                       <Route path="/topic/:id" component={TopicDetails} />
+                      <Route path="/favorites" component={Favorites} />
                       <Route render={() => <h1 className="errorMsg">404: Page cannot be found</h1>}/>
                   </Switch>
               <Footer/>
