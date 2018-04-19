@@ -6,16 +6,19 @@ const Favorites = inject('store')(observer(class Favorites extends Component {
     store = this.props.store;
 
     componentDidMount() {
-        this.store.favoritesList = JSON.parse(localStorage.getItem('favoritesList'))
+        this.store.favoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
     }
 
-    removeFavoriteTopic = (index) => {
-        this.store.favoritesList.splice(index, 1);
-        localStorage.setItem('favoritesList', JSON.stringify(this.store.favoritesList));
+    removeTopic = (index) => {
+        this.store.removeFavoriteTopic(index);
+        this.setToLocalStr(this.store.favoritesList);
     };
 
+    setToLocalStr = (favoritesList) => localStorage.setItem('favoritesList', JSON.stringify(favoritesList));
+
     render() {
-        const favorites = this.store.favoritesList.map((topic, index) => {
+        const { store } = this.props;
+        const favorites = store.favoritesList.map((topic, index) => {
             const multimedia = topic.multimedia.slice().map(el => el.url);
             return (
                 <div key={index} className="fv_list">
@@ -27,7 +30,7 @@ const Favorites = inject('store')(observer(class Favorites extends Component {
                         <div className="addInfo">
                             <a href={topic.url} target="_blank">Details</a>
                             <span className="removeOption"
-                                  onClick={() => this.removeFavoriteTopic(index)}>Remove</span>
+                                  onClick={() => this.removeTopic(index)}>Remove</span>
                         </div>
                     </div>
                 </div>
@@ -36,7 +39,7 @@ const Favorites = inject('store')(observer(class Favorites extends Component {
         });
         return (
             <div className="tp_perfect">
-                {this.store.favoritesList.length !== 0 ? favorites : <p className="defaultTitle">Empty List</p>}
+                {store.favoritesList.length !== 0 ? favorites : <p className="defaultTitle">Empty List</p>}
             </div>
         )}
 }));

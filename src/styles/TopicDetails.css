@@ -33,3 +33,11 @@
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+.addedToFv {
+    margin: -42px 40px 0 0;
+    float: right;
+    font-weight: 800;
+    font-size: 20px;
+    color: darkorange;
+}

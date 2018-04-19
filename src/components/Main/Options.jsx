@@ -1,33 +1,37 @@
 import React, { Component } from 'react';
 import { observer, inject } from "mobx-react";
+import Star from 'react-icons/lib/go/star';
 import '../../styles/Options.css';
 
 const Options = inject('store')(observer(class Options extends Component {
-    store = this.props.store;
-
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            showStar: false
         }
     }
 
     openOptions = () => this.setState({isOpen: !this.state.isOpen});
-    addToFavorites = (index) => {
-        this.store.favoritesList.push(this.store.topicData[index]);
-        localStorage.setItem('favoritesList', JSON.stringify(this.store.favoritesList));
-        this.store.isAdded = !this.store.isAdded;
-        this.setState({isOpen: false});
+    addFavorites = (index) => {
+        const { store } = this.props;
+        store.addToFavorites(index);
+        this.setToLocalStr(store.favoritesList);
+        store.changeAddedOption();
+        this.setState({isOpen: false, showStar: true});
     };
+    setToLocalStr = (favoritesList) => localStorage.setItem('favoritesList', JSON.stringify(favoritesList));
 
     render() {
         return (
             <div>
                 <div className="ddOptions">
-                    <span className="options" onClick={this.openOptions}>...</span>
+                    {!this.state.showStar ?
+                        <span className="options" onClick={this.openOptions}>...</span> :
+                        <span className="addedToFv"><Star/></span>}
                         {this.state.isOpen &&
                             <ul className="listOptions"
-                                onClick={() => this.addToFavorites(this.props.story)}>
+                                onClick={() => this.addFavorites(this.props.story)}>
                                     <li>Add to Favorites</li>
                             </ul>
                         }

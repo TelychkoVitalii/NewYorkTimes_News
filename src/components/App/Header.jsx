@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import '../../styles/Header.css';
 
 const Header = inject('store')(observer(class Header extends Component {
-    store = this.props.store;
 
     render() {
+        const { store } = this.props;
         return (
             <header>
                 <h3 className="brand">
@@ -20,7 +20,7 @@ const Header = inject('store')(observer(class Header extends Component {
                 </div>
                 <h3>
                     <Link to='/favorites' className="favoriteLink">Favorites</Link>
-                    {this.store.isAdded ? <span className='added'>Added</span> : null}
+                    {store.isAdded ? <span className='added'>Added</span> : null}
                 </h3>
             </header>
         );
