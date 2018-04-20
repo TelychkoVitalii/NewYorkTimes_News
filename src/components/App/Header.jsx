@@ -7,7 +7,7 @@ import '../../styles/Header.css';
 const Header = inject('store')(observer(class Header extends Component {
 
     render() {
-        const { store } = this.props;
+        const { tpStore } = this.props;
         return (
             <header>
                 <h3 className="brand">
@@ -16,11 +16,11 @@ const Header = inject('store')(observer(class Header extends Component {
                     </Link>
                 </h3>
                 <div className="search">
-                    <Search />
+                    <Search tpStore={tpStore} />
                 </div>
                 <h3>
                     <Link to='/favorites' className="favoriteLink">Favorites</Link>
-                    {store.favoritesStore.isAdded ? <span className='added'>Added</span> : null}
+                    {tpStore.isAdded ? <span className='added'>Added</span> : null}
                 </h3>
             </header>
         );

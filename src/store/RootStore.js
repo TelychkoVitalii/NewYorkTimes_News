@@ -1,10 +1,10 @@
 import TopicStore from './TopicStore';
-import FavoritesStore from './FavoritesStore';
+// import ArticlesStore from './ArticlesStore';
 
 export default class RootStore {
     constructor() {
         this.topicStore = new TopicStore(this);
-        this.favoritesStore = new FavoritesStore(this)
+        // this.articlesStore = new ArticlesStore(this);
     }
 
 }

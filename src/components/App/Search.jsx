@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { observer, inject } from "mobx-react";
-import * as api from '../../services/api';
 import '../../styles/Search.css';
 
 const Search = inject('store')(observer(class Search extends Component {
@@ -12,15 +11,13 @@ const Search = inject('store')(observer(class Search extends Component {
     }
 
     searchData = (e) => {
-        const term = e.target.value;
+        const term = e.target.value, { tpStore } = this.props;
         this.setState({isShow: term});
-        return api.fetchArticles(term)
-            .then(response => response.data.response.docs)
-            .then(data => this.props.store.topicStore.setSearchData(data))
-            .catch(error => error);
+        tpStore.setSearchData(term);
     };
 
     render() {
+        const { tpStore } = this.props;
         return (
             <div>
                 <input type="text"
@@ -29,7 +26,7 @@ const Search = inject('store')(observer(class Search extends Component {
                        className="searchInput"
                        onChange={this.searchData}/>
                     <ul className={!this.state.isShow ? 'hideList' : 'articlesList'}>
-                        {this.props.store.topicStore.articles.map((article, index) => {
+                        {tpStore.articles.map((article, index) => {
                             return (
                                 <li key={index}>
                                     <a href={article.web_url}

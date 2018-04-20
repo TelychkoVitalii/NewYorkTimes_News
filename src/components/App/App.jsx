@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Header from './Header';
 import Footer from './Footer';
 import TopicDetails from '../Main/TopicDetails';
+import TopicStore from '../../store/TopicStore';
 import Favorites from '../Main/Favorites';
+// import ArticlesStore from '../../store/ArticlesStore';
 import Main from '../Main/index';
 import '../../styles/App.css';
 
@@ -13,12 +15,12 @@ class App extends Component {
     return (
         <Router basename={process.env.PUBLIC_URL}>
           <div className="App">
-              <Header/>
+              <Header tpStore={new TopicStore()} />
                   <Switch>
                       <Redirect from="/" exact to="/topics" />
                       <Route exact path="/topics" component={Main}/>
-                      <Route path="/topic/:id" component={TopicDetails} />
-                      <Route path="/favorites" component={Favorites} />
+                      <Route path="/topic/:id" render={({match}) => <TopicDetails tpStore={new TopicStore()} match={match} />} />
+                      <Route path="/favorites" render={() => <Favorites tpStore={new TopicStore()} />}/>
                       <Route render={() => <h1 className="errorMsg">404: Page cannot be found</h1>}/>
                   </Switch>
               <Footer/>

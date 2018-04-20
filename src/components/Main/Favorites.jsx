@@ -5,21 +5,14 @@ import '../../styles/Favorites.css';
 const Favorites = inject('store')(observer(class Favorites extends Component {
 
     componentDidMount() {
-        const { store } = this.props;
-        store.favoritesStore.favoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
+        this.props.tpStore.favoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
     }
 
-    removeTopic = (index) => {
-        const { store } = this.props;
-        store.favoritesStore.removeFavoriteTopic(index);
-        this.setToLocalStr(store.favoritesStore.favoritesList);
-    };
-
-    setToLocalStr = (favoritesList) => localStorage.setItem('favoritesList', JSON.stringify(favoritesList));
+    removeTopic = (index) => this.props.tpStore.removeFavoriteTopic(index);
 
     render() {
-        const { store } = this.props;
-        const favorites = store.favoritesStore.favoritesList.map((topic, index) => {
+        const { tpStore } = this.props;
+        const favorites = tpStore.favoritesList.map((topic, index) => {
             const multimedia = topic.multimedia.slice().map(el => el.url);
             return (
                 <div key={index} className="fv_list">
@@ -40,7 +33,7 @@ const Favorites = inject('store')(observer(class Favorites extends Component {
         });
         return (
             <div className="tp_perfect">
-                {store.favoritesStore.favoritesList.length !== 0 ? favorites : <p className="defaultTitle">Empty List</p>}
+                {tpStore.favoritesList.length !== 0 ? favorites : <p className="defaultTitle">Empty List</p>}
             </div>
         )}
 }));
