@@ -16,7 +16,7 @@ const Search = inject('store')(observer(class Search extends Component {
         this.setState({isShow: term});
         return api.fetchArticles(term)
             .then(response => response.data.response.docs)
-            .then(data => this.props.store.setSearchData(data))
+            .then(data => this.props.store.topicStore.setSearchData(data))
             .catch(error => error);
     };
 
@@ -29,7 +29,7 @@ const Search = inject('store')(observer(class Search extends Component {
                        className="searchInput"
                        onChange={this.searchData}/>
                     <ul className={!this.state.isShow ? 'hideList' : 'articlesList'}>
-                        {this.props.store.articles.map((article, index) => {
+                        {this.props.store.topicStore.articles.map((article, index) => {
                             return (
                                 <li key={index}>
                                     <a href={article.web_url}

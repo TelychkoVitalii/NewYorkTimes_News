@@ -19,19 +19,18 @@ const TopicDetails = inject('store')(observer(class TopicDetails extends Compone
         return api.fetchTopic(section)
             .then(response => response.data.results)
             .then(data => {
-                this.store.setFetchData(data);
-                this.store.changeLoadingOption(true);
-                this.setToLocalStr(this.store.topicData);
+                this.store.topicStore.setFetchData(data);
+                this.store.topicStore.changeLoadingOption(true);
+                this.setToLocalStr(this.store.topicStore.topicData);
             })
     };
 
     setToLocalStr = (topicData) => localStorage.setItem('topicData', JSON.stringify(topicData));
 
     render() {
-        const { store } = this.props,
-              fvList = JSON.parse(localStorage.getItem('favoritesList')),
+        const fvList = JSON.parse(localStorage.getItem('favoritesList')) || [],
               fvTitle = fvList.map(el => el.title),
-              topicData = store.topicData.map((topic, index) => {
+              topicData = this.store.topicStore.topicData.map((topic, index) => {
                 this.lastUpdate = topic.updated_date;
                 const multimedia = topic.multimedia.slice().map(el => el.url);
                 return (
@@ -56,7 +55,7 @@ const TopicDetails = inject('store')(observer(class TopicDetails extends Compone
             });
         return (
             <div>
-                {!store.isLoading ? <Loading/> :
+                {!this.store.topicStore.isLoading ? <Loading/> :
                     <div className="transitionBlock">
                         <span className="update">Last Update:&nbsp;
                             <Moment>{this.lastUpdate}</Moment>

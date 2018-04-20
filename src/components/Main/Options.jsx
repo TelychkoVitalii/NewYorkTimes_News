@@ -15,9 +15,9 @@ const Options = inject('store')(observer(class Options extends Component {
     openOptions = () => this.setState({isOpen: !this.state.isOpen});
     addFavorites = (index) => {
         const { store } = this.props;
-        store.addToFavorites(index);
-        this.setToLocalStr(store.favoritesList);
-        store.changeAddedOption();
+        store.favoritesStore.addToFavorites(index);
+        this.setToLocalStr(store.favoritesStore.favoritesList);
+        store.favoritesStore.changeAddedOption();
         this.setState({isOpen: false, showStar: true});
     };
     setToLocalStr = (favoritesList) => localStorage.setItem('favoritesList', JSON.stringify(favoritesList));
