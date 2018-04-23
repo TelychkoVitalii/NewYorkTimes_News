@@ -8,16 +8,16 @@ import '../../styles/TopicDetails.css';
 
 const TopicDetails = inject('store')(observer(class TopicDetails extends Component {
     lastUpdate = null;
-    fvList = JSON.parse(localStorage.getItem('favoritesList'));
+    fvList = JSON.parse(localStorage.getItem('favoritesList')) || [];
 
     componentDidMount() {
-        this.props.tpStore.setFetchData(this.props.match.params.id.replace('/topic/', ''));
+        const { store } = this.props;
+        store.topicStore.setFetchData(this.props.location.pathname.replace('/topic/', ''));
     }
 
     render() {
-        const fvTitle = this.fvList.map(el => el.title),
-              { tpStore } = this.props,
-              topicData = tpStore.topicData.map((topic, index) => {
+        const { store } = this.props, fvTitle = this.fvList.map(el => el.title),
+              topicData = store.topicStore.topicData.map((topic, index) => {
                 this.lastUpdate = topic.updated_date;
                 const multimedia = topic.multimedia.slice().map(el => el.url);
                 return (
@@ -33,14 +33,14 @@ const TopicDetails = inject('store')(observer(class TopicDetails extends Compone
                             </figure>
                         </a>
                         {!fvTitle.includes(topic.title) ?
-                            <Options tpStore={tpStore} story={index}/> :
+                            <Options story={index}/> :
                             <span className="addedToFv"><Star/></span>}
                     </div>
                 )
             });
         return (
             <div>
-                {!tpStore.isLoading ? <Loading/> :
+                {!store.topicStore.isLoading ? <Loading/> :
                     <div className="transitionBlock">
                         <span className="update">Last Update:&nbsp;
                             <Moment>{this.lastUpdate}</Moment>

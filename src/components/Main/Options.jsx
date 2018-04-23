@@ -14,7 +14,8 @@ const Options = inject('store')(observer(class Options extends Component {
 
     openOptions = () => this.setState({isOpen: !this.state.isOpen});
     addFavorites = (index) => {
-        this.props.tpStore.addToFavorites(index);
+        const { store } = this.props;
+        store.topicStore.addToFavorites(index);
         this.setState({isOpen: false, showStar: true});
     };
 

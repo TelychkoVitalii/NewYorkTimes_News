@@ -1,24 +1,22 @@
-import { observable, decorate, action } from 'mobx';
+import { observable, decorate, action, reaction } from 'mobx';
 import api from '../components/App/Api';
 
 export default class TopicStore {
     topicData = [];
-    isLoading = false;
     favoritesList = [];
     isAdded = false;
-    articles = [];
-
-    constructor(rootStore) {
-        this.rootStore = rootStore;
-    }
+    isLoading = false;
 
     changeLoadingOption = (bool) => this.isLoading = bool;
-    changeAddedOption = () => this.isAdded = !this.isAdded;
+    changeAddedOption = (bool) => this.isAdded = bool;
+
+    getInitialBooleanValue = () => this.isAdded = false;
 
     addToFavorites = (index) => {
         this.favoritesList.push(this.topicData[index]);
         localStorage.setItem('favoritesList', JSON.stringify(this.favoritesList));
-        this.changeAddedOption();
+        reaction(() => this.favoritesList, () => { this.changeAddedOption(true) }, {fireImmediately: true});
+        setTimeout(this.getInitialBooleanValue, 700);
     };
 
     removeFavoriteTopic = (index) => {
@@ -35,21 +33,14 @@ export default class TopicStore {
             })
             .catch(error => error)
     };
-
-    setSearchData = (term) => {
-        api.get(`/search/v2/articlesearch.json?`, {params: {q: term}})
-            .then(response => this.articles = response.data.response.docs)
-            .catch(error => error);
-    };
 }
 
 decorate(TopicStore, {
     topicData: observable,
     isLoading: observable,
-    articles: observable,
-    setSearchData: action,
     addToFavorites: action,
     setFetchData: action,
+    getInitialBooleanValue: action,
     changeLoadingOption: action,
     favoritesList: observable,
     isAdded: observable,

@@ -11,13 +11,13 @@ const Search = inject('store')(observer(class Search extends Component {
     }
 
     searchData = (e) => {
-        const term = e.target.value, { tpStore } = this.props;
+        const term = e.target.value, { articleStore } = this.props;
         this.setState({isShow: term});
-        tpStore.setSearchData(term);
+        articleStore.setSearchData(term);
     };
 
     render() {
-        const { tpStore } = this.props;
+        const { articleStore } = this.props;
         return (
             <div>
                 <input type="text"
@@ -26,7 +26,7 @@ const Search = inject('store')(observer(class Search extends Component {
                        className="searchInput"
                        onChange={this.searchData}/>
                     <ul className={!this.state.isShow ? 'hideList' : 'articlesList'}>
-                        {tpStore.articles.map((article, index) => {
+                        {articleStore.articles.map((article, index) => {
                             return (
                                 <li key={index}>
                                     <a href={article.web_url}

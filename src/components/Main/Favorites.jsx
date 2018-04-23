@@ -5,14 +5,18 @@ import '../../styles/Favorites.css';
 const Favorites = inject('store')(observer(class Favorites extends Component {
 
     componentDidMount() {
-        this.props.tpStore.favoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
+        const { store } = this.props;
+        store.topicStore.favoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
     }
 
-    removeTopic = (index) => this.props.tpStore.removeFavoriteTopic(index);
+    removeTopic = (index) => {
+        const { store } = this.props;
+        store.topicStore.removeFavoriteTopic(index);
+    }
 
     render() {
-        const { tpStore } = this.props;
-        const favorites = tpStore.favoritesList.map((topic, index) => {
+        const { store } = this.props;
+        const favorites = store.topicStore.favoritesList.map((topic, index) => {
             const multimedia = topic.multimedia.slice().map(el => el.url);
             return (
                 <div key={index} className="fv_list">
@@ -33,7 +37,7 @@ const Favorites = inject('store')(observer(class Favorites extends Component {
         });
         return (
             <div className="tp_perfect">
-                {tpStore.favoritesList.length !== 0 ? favorites : <p className="defaultTitle">Empty List</p>}
+                {store.topicStore.favoritesList.length !== 0 ? favorites : <p className="defaultTitle">Empty List</p>}
             </div>
         )}
 }));
