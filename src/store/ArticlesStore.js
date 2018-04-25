@@ -5,7 +5,10 @@ const Articles = types.model('Articles', {
 }).actions(self => ({
     loadArticles: flow(function* (term) {
         const json = yield api.get(`/search/v2/articlesearch.json?`, {params: {q: term}})
-            .then(response => self.articles = response.data.response.docs)
+            .then(response => {
+                self.articles = response.data.response.docs
+                console.log(self.articles)
+            })
             .catch(error => error);
     })
 }));
