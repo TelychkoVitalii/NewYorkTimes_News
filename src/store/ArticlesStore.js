@@ -1,17 +1,15 @@
-import { observable, decorate, action } from 'mobx';
+import { types, flow } from "mobx-state-tree";
 import api from '../components/App/Api';
 
-export default class ArticlesStore {
-    articles = [];
-
-    setSearchData = (term) => {
-        api.get(`/search/v2/articlesearch.json?`, {params: {q: term}})
-            .then(response => this.articles = response.data.response.docs)
+const Articles = types.model('Articles', {
+}).actions(self => ({
+    loadArticles: flow(function* (term) {
+        const json = yield api.get(`/search/v2/articlesearch.json?`, {params: {q: term}})
+            .then(response => self.articles = response.data.response.docs)
             .catch(error => error);
-    };
-}
+    })
+}));
 
-decorate(ArticlesStore, {
-    articles: observable,
-    setSearchData: action,
-});
+const store = Articles.create();
+
+export default store;

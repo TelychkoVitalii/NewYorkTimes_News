@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import TopicDetails from '../Main/TopicDetails';
 import Favorites from '../Main/Favorites';
-import ArticlesStore from '../../store/ArticlesStore';
+import store from '../../store/ArticlesStore';
 import Main from '../Main/index';
 import '../../styles/App.css';
 
@@ -14,7 +14,7 @@ class App extends Component {
     return (
         <Router basename={process.env.PUBLIC_URL}>
           <div className="App">
-              <Header articleStore={new ArticlesStore()} />
+              <Header articleStore={store} />
                   <Switch>
                       <Redirect from="/" exact to="/topics" />
                       <Route exact path="/topics" component={Main} />

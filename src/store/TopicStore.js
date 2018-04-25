@@ -15,7 +15,7 @@ export default class TopicStore {
     addToFavorites = (index) => {
         this.favoritesList.push(this.topicData[index]);
         localStorage.setItem('favoritesList', JSON.stringify(this.favoritesList));
-        reaction(() => this.favoritesList, () => { this.changeAddedOption(true) }, {fireImmediately: true});
+        reaction(() => this.favoritesList.length, () => { this.changeAddedOption(true) }, {fireImmediately: true});
         setTimeout(this.getInitialBooleanValue, 700);
     };
 
