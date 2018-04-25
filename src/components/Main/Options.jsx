@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { reaction } from "mobx";
+// import { reaction } from "mobx";
 import { observer, inject } from "mobx-react";
 import Star from 'react-icons/lib/go/star';
 import '../../styles/Options.css';
@@ -17,7 +17,6 @@ const Options = inject('store')(observer(class Options extends Component {
     addFavorites = (index) => {
         const { store } = this.props;
         store.addToFavorites(index);
-        reaction(() => store.favoritesList.length, () => { store.changeAddedOption(true) }, {fireImmediately: true});
         this.setState({isOpen: false, showStar: true});
     };
 

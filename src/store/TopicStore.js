@@ -4,7 +4,6 @@ import api from '../components/App/Api';
 const Topics = types.model('Topics', {
     topicData: types.array(types.frozen),
     favoritesList: types.array(types.frozen),
-    isAdded: types.boolean,
     isLoading: types.boolean
 }).actions(self => ({
     loadTopics: flow(function* (section) {
@@ -22,29 +21,20 @@ const Topics = types.model('Topics', {
         self.favoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
     },
 
-    addToFavorites(index) {
-        self.favoritesList = [];
+    addToFavorites: function (index) {
         self.favoritesList.push(self.topicData[index]);
         localStorage.setItem('favoritesList', JSON.stringify(self.favoritesList));
-        setTimeout(self.getInitialBooleanValue, 700);
     },
-    removeFavoriteTopic(index) {
+    removeFavoriteTopic: function (index) {
         self.favoritesList.splice(index, 1);
         localStorage.setItem('favoritesList', JSON.stringify(self.favoritesList));
-    },
-    changeAddedOption(bool) {
-        self.isAdded = bool
-    },
-    getInitialBooleanValue(){
-        self.isAdded = false;
     }
 }));
 
 const topicsStore = Topics.create({
     topicData: [],
     favoritesList: [],
-    isLoading: false,
-    isAdded: false
+    isLoading: false
 });
 
 export default topicsStore;
