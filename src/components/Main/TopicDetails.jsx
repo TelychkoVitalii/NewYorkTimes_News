@@ -12,12 +12,12 @@ const TopicDetails = inject('store')(observer(class TopicDetails extends Compone
 
     componentDidMount() {
         const { store } = this.props;
-        store.topicStore.setFetchData(this.props.location.pathname.replace('/topic/', ''));
+        store.loadTopics(this.props.location.pathname.replace('/topic/', ''));
     }
 
     render() {
         const { store } = this.props, fvTitle = this.fvList.map(el => el.title),
-              topicData = store.topicStore.topicData.map((topic, index) => {
+              topicData = store.topicData.map((topic, index) => {
                 this.lastUpdate = topic.updated_date;
                 const multimedia = topic.multimedia.slice().map(el => el.url);
                 return (
@@ -40,7 +40,7 @@ const TopicDetails = inject('store')(observer(class TopicDetails extends Compone
             });
         return (
             <div>
-                {!store.topicStore.isLoading ? <Loading/> :
+                {!store.isLoading ? <Loading/> :
                     <div className="transitionBlock">
                         <span className="update">Last Update:&nbsp;
                             <Moment>{this.lastUpdate}</Moment>

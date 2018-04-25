@@ -20,7 +20,7 @@ const Header = inject('store')(observer(class Header extends Component {
                 </div>
                 <h3>
                     <Link to='/favorites' className="favoriteLink">Favorites</Link>
-                    {store.topicStore.isAdded ? <span className='added'>Added</span> : null}
+                    {store.isAdded ? <span className='added'>Added</span> : null}
                 </h3>
             </header>
         );

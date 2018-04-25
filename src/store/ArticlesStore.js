@@ -15,8 +15,8 @@ const Articles = types.model('Articles', {
     })
 }));
 
-const store = Articles.create({
+const articlesStore = Articles.create({
     articles: []
 });
 
-export default store;
+export default articlesStore;

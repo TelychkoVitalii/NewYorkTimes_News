@@ -6,17 +6,17 @@ const Favorites = inject('store')(observer(class Favorites extends Component {
 
     componentDidMount() {
         const { store } = this.props;
-        store.topicStore.favoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
+        return store.getFavorites();
     }
 
     removeTopic = (index) => {
         const { store } = this.props;
-        store.topicStore.removeFavoriteTopic(index);
-    }
+        store.removeFavoriteTopic(index);
+    };
 
     render() {
-        const { store } = this.props;
-        const favorites = store.topicStore.favoritesList.map((topic, index) => {
+        const { store } = this.props,
+              favoritesList = store.favoritesList.map((topic, index) => {
             const multimedia = topic.multimedia.slice().map(el => el.url);
             return (
                 <div key={index} className="fv_list">
@@ -37,7 +37,7 @@ const Favorites = inject('store')(observer(class Favorites extends Component {
         });
         return (
             <div className="tp_perfect">
-                {store.topicStore.favoritesList.length !== 0 ? favorites : <p className="defaultTitle">Empty List</p>}
+                {store.favoritesList.length !== 0 ? favoritesList : <p className="defaultTitle">Empty List</p>}
             </div>
         )}
 }));
