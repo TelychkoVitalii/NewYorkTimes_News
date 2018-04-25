@@ -18,7 +18,7 @@ const Topics = types.model('Topics', {
         }
     }),
     getFavorites() {
-        self.favoritesList = JSON.parse(localStorage.getItem('favoritesList')) || [];
+        return self.favoritesList;
     },
 
     addToFavorites: function (index) {
@@ -33,7 +33,7 @@ const Topics = types.model('Topics', {
 
 const topicsStore = Topics.create({
     topicData: [],
-    favoritesList: [],
+    favoritesList: JSON.parse(localStorage.getItem('favoritesList')) || [],
     isLoading: false
 });
 

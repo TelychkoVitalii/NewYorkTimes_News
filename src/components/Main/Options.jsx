@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-// import { reaction } from "mobx";
 import { observer, inject } from "mobx-react";
 import Star from 'react-icons/lib/go/star';
 import '../../styles/Options.css';
 
 const Options = inject('store')(observer(class Options extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isOpen: false,
-            showStar: false
-        }
-    }
+
+    state = {
+        isOpen: false,
+        showStar: false
+    };
 
     openOptions = () => this.setState({isOpen: !this.state.isOpen});
     addFavorites = (index) => {
