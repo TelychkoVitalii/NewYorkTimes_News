@@ -17,6 +17,7 @@ const Topics = types.model('Topics', {
             console.error('Failed to load topics');
         }
     }),
+    
     getFavorites() {
         return self.favoritesList;
     },

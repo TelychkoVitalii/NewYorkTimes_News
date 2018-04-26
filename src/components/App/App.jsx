@@ -20,7 +20,7 @@ class App extends Component {
                       <Route exact path="/topics" component={Main} />
                       <Route path="/topic/:id" component={TopicDetails} />
                       <Route path="/favorites" component={Favorites} />
-                      <Route render={() => <h1 className="errorMsg">404: Page cannot be found</h1>}/>
+                      <Route render={() => <h1 className="errorMsg">404: Page cannot be found</h1>} />
                   </Switch>
               <Footer/>
               <DevTools />
